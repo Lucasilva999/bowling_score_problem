@@ -42,12 +42,13 @@ function calculateBowlingScore(input) {
   for (let i = 0; i < input.length; i++) {
       const currentPlay = input[i]
       const currentPlayIndex = i
+      const isOneOfTheTwoLastPlays = (input.length - i) <= 2
 
       if (input[i] === '/') {
-        if ((input.length - i) > 2) {
-          finalScore += calculateSpare(input, currentPlayIndex, true)
-        } else {
+        if (isOneOfTheTwoLastPlays) {
           finalScore += calculateSpare(input, currentPlayIndex, false)
+        } else {
+          finalScore += calculateSpare(input, currentPlayIndex, true)
         }
       } else if(input[i] === 'X') {    
         finalScore += calculateStrike(input, currentPlayIndex)
