@@ -12,7 +12,6 @@ function calculateSpare(input, currentPlayIndex, sumWithNextPlay) {
   } else {
     sparePoints += (10 - previousPlay)
   }
-
   return sparePoints
 }
 
@@ -42,15 +41,15 @@ function calculateBowlingScore(input) {
   for (let i = 0; i < input.length; i++) {
       const currentPlay = input[i]
       const currentPlayIndex = i
-      const isOneOfTheTwoLastPlays = (input.length - i) <= 2
+      const isOneOfTheTwoLastPlays = (input.length - currentPlayIndex) <= 2
 
-      if (input[i] === '/') {
+      if (currentPlay === '/') {
         if (isOneOfTheTwoLastPlays) {
           finalScore += calculateSpare(input, currentPlayIndex, false)
         } else {
           finalScore += calculateSpare(input, currentPlayIndex, true)
         }
-      } else if(input[i] === 'X') {    
+      } else if(currentPlay === 'X') {    
         finalScore += calculateStrike(input, currentPlayIndex)
       } else {
         finalScore += Number(currentPlay)
